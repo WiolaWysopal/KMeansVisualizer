@@ -1,41 +1,81 @@
-# KMeans Visualizer
+# 🎯 KMeans Visualizer
 
-Interactive machine learning visualization application that demonstrates how the K-Means clustering algorithm works step by step.
+Interactive machine learning visualization application that demonstrates how the **K-Means Clustering** algorithm works step by step.
 
-## Tech Stack
+The project is designed as an educational tool for learning machine learning fundamentals, clustering algorithms, data visualization, and modern software engineering practices.
+
+---
+
+## ✨ Current Features
+
+### 📊 Dataset Generator
+
+* Generate random 2D datasets
+* Configure the number of points
+* Visualize generated points in real time
+* Interactive scatter plot rendering using SVG
+
+### 🚧 Planned Features
+
+* K-Means clustering algorithm implementation
+* Step-by-step clustering visualization
+* Centroid initialization and movement tracking
+* Iteration controls (Next Step / Previous Step)
+* Autoplay mode
+* Inertia and convergence metrics
+* AI-powered explanations of clustering results
+* Docker & Kubernetes deployment
+* CI/CD with GitHub Actions
+
+---
+
+## 🛠️ Tech Stack
 
 ### Backend
 
-- Python 3.13
-- FastAPI
-- NumPy
+* Python 3.13
+* FastAPI
+* NumPy
 
-### Planned Frontend
+### Frontend
 
-- React
-- Vite
-- Plotly
+* React
+* Vite
+* JavaScript
+* SVG Visualization
 
 ### Planned DevOps
 
-- Docker
-- Docker Compose
-- Kubernetes
-- GitHub Actions
+* Docker
+* Docker Compose
+* Kubernetes
+* GitHub Actions
 
-## Project Structure
+---
+
+## 📁 Project Structure
 
 ```text
 KMeansVisualizer/
 ├── backend/
 │   ├── main.py
 │   └── requirements.txt
+│
 ├── frontend/
+│   └── src/
+│       ├── components/
+│       │   ├── DatasetGenerator.jsx
+│       │   └── ScatterPlot.jsx
+│       ├── utils/
+│       │   └── generateDataset.js
+│       └── App.jsx
+│
 ├── k8s/
-└── README.md
+├── README.md
+└── .gitignore
 ```
 
-## Getting Started
+## 🚀 Getting Started
 
 ### Create Virtual Environment
 
@@ -49,7 +89,7 @@ py -m venv venv
 .\venv\Scripts\Activate.ps1
 ```
 
-### Install Dependencies
+### Install Backend Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -61,7 +101,25 @@ pip install -r requirements.txt
 uvicorn main:app --reload
 ```
 
-## API Documentation
+---
+
+## 💻 Frontend Setup
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Default frontend URL:
+
+```text
+http://localhost:5173
+```
+
+---
+
+## 📚 API Documentation
 
 Swagger UI:
 
@@ -69,7 +127,9 @@ Swagger UI:
 http://localhost:8000/docs
 ```
 
-## Available Endpoints
+---
+
+## 🔗 Available Endpoints
 
 ### Health Check
 
@@ -85,7 +145,20 @@ Response:
 }
 ```
 
-## Code Quality
+---
+
+## 📸 Current Application Preview
+
+### Dataset Generator
+
+* Select number of points
+* Generate random datasets
+* Display points on a scatter plot
+* Prepare datasets for K-Means clustering
+
+---
+
+## ✅ Code Quality
 
 ### Format Code
 
@@ -99,7 +172,37 @@ py -m black .
 py -m ruff check .
 ```
 
-### Tools
+### Frontend Build Verification
 
-- Black - Python code formatter
-- Ruff - Python linter and import checker
+```bash
+cd frontend
+npm run build
+```
+
+---
+
+## 🔧 Development Tools
+
+* `Black` - Python formatter
+* `Ruff` - Python linter
+* `React` - Frontend UI
+* `Vite` - Frontend tooling
+* `FastAPI` - Backend API
+* `GitHub Actions` - CI/CD (planned)
+* `Docker` & `Kubernetes` - Deployment (planned)
+
+---
+
+## 🎓 Learning Goals
+
+This project demonstrates:
+
+* Machine Learning Fundamentals
+* K-Means Clustering
+* Data Visualization
+* React Development
+* API Development with FastAPI
+* Containerization with Docker
+* Kubernetes Deployment
+* CI/CD Automation
+* AI-Assisted Learning Applications
