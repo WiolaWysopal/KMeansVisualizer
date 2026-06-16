@@ -15,7 +15,11 @@ export default function KMeansControls({ points, onCluster }) {
         max_iterations: 10,
       });
 
-      onCluster(response.data.final_centroids);
+      onCluster({
+        finalCentroids: response.data.final_centroids,
+        iterations: response.data.iterations,
+        k,
+      });
     } catch {
       setError("Failed to run K-Means.");
     }
