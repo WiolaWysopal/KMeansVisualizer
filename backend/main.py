@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 
 from schemas.dataset import DatasetRequest
 from schemas.kmeans import KMeansRequest
@@ -6,6 +7,23 @@ from services.dataset_service import generate_dataset
 from services.kmeans_service import run_kmeans
 
 app = FastAPI(title="KMeans Visualizer API")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
+@app.get("/")
+def root():
+    return {
+        "message": "KMeans Visualizer API",
+        "docs": "/docs",
+        "health": "/health",
+    }
 
 
 @app.get("/health")
