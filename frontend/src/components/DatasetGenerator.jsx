@@ -1,12 +1,31 @@
 import { useState } from 'react';
-import { generateDataset } from '../utils/generateDataset';
+import api from '../services/api';
 
 export default function DatasetGenerator({ onGenerate }) {
   const [pointCount, setPointCount] = useState(50);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleGenerate = () => {
-    const dataset = generateDataset(pointCount);
-    onGenerate(dataset);
+  const handleGenerate = async () => {
+    try {
+      setIsLoading(true);
+      setError('');
+
+      const response = await api.post('/datasets/generate', {
+        points: pointCount,
+      });
+
+      const formattedPoints = response.data.points.map(([x, y]) => ({
+  x,
+  y,
+}));
+
+onGenerate(formattedPoints);
+    } catch {
+      setError('Failed to generate dataset.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -23,7 +42,11 @@ export default function DatasetGenerator({ onGenerate }) {
         onChange={(event) => setPointCount(Number(event.target.value))}
       />
 
-      <button onClick={handleGenerate}>Generate Dataset</button>
+      <button onClick={handleGenerate} disabled={isLoading}>
+        {isLoading ? 'Generating...' : 'Generate Dataset'}
+      </button>
+
+      {error && <p>{error}</p>}
     </section>
   );
 }
