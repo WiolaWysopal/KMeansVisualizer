@@ -12,20 +12,32 @@ The project is designed as an educational tool for learning machine learning fun
 
 * Generate random 2D datasets
 * Configure the number of points
-* Visualize generated points in real time
-* Interactive scatter plot rendering using SVG
+* Return datasets through FastAPI API
+* Prepare datasets for clustering experiments
+
+### 🎯 K-Means Clustering Engine
+
+* Custom K-Means implementation using NumPy
+* Configurable number of clusters (k)
+* Configurable maximum number of iterations
+* Random centroid initialization
+* Point-to-centroid assignment
+* Centroid recalculation
+* Inertia (loss) calculation
+* Iteration history tracking
+* Final centroid calculation
 
 ### 🚧 Planned Features
 
-* K-Means clustering algorithm implementation
-* Step-by-step clustering visualization
-* Centroid initialization and movement tracking
-* Iteration controls (Next Step / Previous Step)
+* React-based visualization
+* Step-by-step clustering animation
+* Centroid movement visualization
+* Iteration controls (Next / Previous)
 * Autoplay mode
-* Inertia and convergence metrics
-* AI-powered explanations of clustering results
-* Docker & Kubernetes deployment
-* CI/CD with GitHub Actions
+* Inertia charts
+* Docker deployment
+* Kubernetes deployment
+* GitHub Actions CI/CD
 
 ---
 
@@ -58,8 +70,17 @@ The project is designed as an educational tool for learning machine learning fun
 ```text
 KMeansVisualizer/
 ├── backend/
+│   ├── schemas/
+│   │   ├── dataset.py
+│   │   └── kmeans.py
+│   │
+│   ├── services/
+│   │   ├── dataset_service.py
+│   │   └── kmeans_service.py
+│   │
 │   ├── main.py
-│   └── requirements.txt
+│   ├── requirements.txt
+│   └── pyproject.toml
 │
 ├── frontend/
 │   └── src/
@@ -75,21 +96,31 @@ KMeansVisualizer/
 └── .gitignore
 ```
 
-## 🚀 Getting Started
+---
+
+## 🚀 Backend Setup
+
+### Clone Repository
+
+```bash
+git clone <repository-url>
+cd KMeansVisualizer
+```
 
 ### Create Virtual Environment
 
 ```bash
+cd backend
 py -m venv venv
 ```
 
-### Activate Environment (Windows PowerShell)
+### Activate Virtual Environment
 
 ```bash
 .\venv\Scripts\Activate.ps1
 ```
 
-### Install Backend Dependencies
+### Install Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -98,28 +129,14 @@ pip install -r requirements.txt
 ### Run Backend
 
 ```bash
-uvicorn main:app --reload
+python -m uvicorn main:app --reload
 ```
 
----
-
-## 💻 Frontend Setup
-
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
-Default frontend URL:
+Backend will be available at:
 
 ```text
-http://localhost:5173
+http://localhost:8000
 ```
-
----
-
-## 📚 API Documentation
 
 Swagger UI:
 
@@ -145,16 +162,82 @@ Response:
 }
 ```
 
+### Generate Dataset
+
+```http
+POST /datasets/generate
+```
+
+Request:
+
+```json
+{
+  "points": 100
+}
+```
+
+Response:
+
+```json
+{
+  "points": [
+    [12.5, 45.1],
+    [22.8, 11.3]
+  ]
+}
+```
+
+### Run K-Means
+
+```http
+POST /kmeans/steps
+```
+
+Request:
+
+```json
+{
+  "points": [
+    [1, 2],
+    [2, 1],
+    [8, 9],
+    [9, 8]
+  ],
+  "k": 2,
+  "max_iterations": 10
+}
+```
+
+Response:
+
+```json
+{
+  "iterations": [...],
+  "final_centroids": [...]
+}
+```
+
+---
+
+## 📚 API Documentation
+
+Swagger UI:
+
+```text
+http://localhost:8000/docs
+```
+
 ---
 
 ## 📸 Current Application Preview
 
-### Dataset Generator
+### Backend API
 
-* Select number of points
-* Generate random datasets
-* Display points on a scatter plot
-* Prepare datasets for K-Means clustering
+* Dataset generation endpoint implemented
+* K-Means clustering endpoint implemented
+* Iteration history tracking implemented
+* Inertia calculation implemented
+* Swagger documentation available
 
 ---
 
@@ -163,22 +246,23 @@ Response:
 ### Format Code
 
 ```bash
+cd backend
 py -m black .
 ```
 
 ### Run Linter
 
 ```bash
+cd backend
 py -m ruff check .
 ```
 
-### Frontend Build Verification
+### Auto-Fix Linter Issues
 
 ```bash
-cd frontend
-npm run build
+cd backend
+py -m ruff check . --fix
 ```
-
 ---
 
 ## 🔧 Development Tools
@@ -198,11 +282,12 @@ npm run build
 This project demonstrates:
 
 * Machine Learning Fundamentals
-* K-Means Clustering
-* Data Visualization
-* React Development
-* API Development with FastAPI
-* Containerization with Docker
-* Kubernetes Deployment
-* CI/CD Automation
-* AI-Assisted Learning Applications
+* K-Means Clustering Algorithm
+* Numerical Computing with NumPy
+* FastAPI Backend Development
+* API Design and Validation
+* React Frontend Development (planned)
+* Data Visualization (planned)
+* Docker Containerization (planned)
+* Kubernetes Deployment (planned)
+* CI/CD Automation (planned)
