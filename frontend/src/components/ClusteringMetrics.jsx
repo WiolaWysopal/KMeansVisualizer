@@ -1,4 +1,8 @@
-export default function ClusteringMetrics({ datasetSize, clusteringResult }) {
+export default function ClusteringMetrics({
+  datasetSize,
+  clusteringResult,
+  currentIteration,
+}) {
   if (!clusteringResult) {
     return null;
   }
@@ -12,7 +16,11 @@ export default function ClusteringMetrics({ datasetSize, clusteringResult }) {
 
       <p>Dataset size: {datasetSize} points</p>
       <p>Clusters: {clusteringResult.k}</p>
-      <p>Iterations: {iterations.length}</p>
+      <p>Total iterations: {iterations.length}</p>
+      <p>
+        Current inertia:{" "}
+        {currentIteration ? currentIteration.inertia.toFixed(2) : "N/A"}
+      </p>
       <p>
         Final inertia:{" "}
         {finalIteration ? finalIteration.inertia.toFixed(2) : "N/A"}
