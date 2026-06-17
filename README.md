@@ -29,15 +29,18 @@ The project is designed as an educational tool for learning machine learning fun
 
 ### 🚧 Planned Features
 
-* React-based visualization
-* Step-by-step clustering animation
 * Centroid movement visualization
-* Iteration controls (Next / Previous)
-* Autoplay mode
 * Inertia charts
 * Docker deployment
 * Kubernetes deployment
 * GitHub Actions CI/CD
+* Cluster assignment visualization improvements
+* Responsive UI
+* Dark mode
+* Docker deployment
+* Kubernetes deployment
+* GitHub Actions CI/CD
+* Linear Regression Visualizer
 
 ---
 
@@ -54,6 +57,7 @@ The project is designed as an educational tool for learning machine learning fun
 * React
 * Vite
 * JavaScript
+* Axios
 * SVG Visualization
 
 ### Planned DevOps
@@ -71,30 +75,54 @@ The project is designed as an educational tool for learning machine learning fun
 KMeansVisualizer/
 ├── backend/
 │   ├── schemas/
+│   │   ├── __init__.py
 │   │   ├── dataset.py
 │   │   └── kmeans.py
 │   │
 │   ├── services/
+│   │   ├── __init__.py
 │   │   ├── dataset_service.py
 │   │   └── kmeans_service.py
 │   │
+│   ├── venv/
 │   ├── main.py
 │   ├── requirements.txt
 │   └── pyproject.toml
 │
 ├── frontend/
-│   └── src/
-│       ├── components/
-│       │   ├── DatasetGenerator.jsx
-│       │   └── ScatterPlot.jsx
-│       ├── utils/
-│       │   └── generateDataset.js
-│       └── App.jsx
+│   ├── public/
+│   │
+│   ├── src/
+│   │   ├── assets/
+│   │   │   ├── hero.png
+│   │   │   ├── react.svg
+│   │   │   └── vite.svg
+│   │   │
+│   │   ├── components/
+│   │   │   ├── ClusteringMetrics.jsx
+│   │   │   ├── DatasetGenerator.jsx
+│   │   │   ├── IterationControls.jsx
+│   │   │   ├── KMeansControls.jsx
+│   │   │   └── ScatterPlot.jsx
+│   │   │
+│   │   ├── services/
+│   │   │   └── api.js
+│   │   │
+│   │   ├── App.jsx
+│   │   ├── App.css
+│   │   ├── index.css
+│   │   └── main.jsx
+│   │
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── vite.config.js
+│   └── eslint.config.js
 │
 ├── k8s/
 ├── README.md
 └── .gitignore
 ```
+
 
 ---
 
@@ -142,6 +170,35 @@ Swagger UI:
 
 ```text
 http://localhost:8000/docs
+```
+
+---
+
+## 💻 Frontend Setup
+
+### Install Dependencies
+
+```bash
+cd frontend
+npm install
+```
+
+## Run Frontend
+
+```bash
+npm run dev
+```
+
+Frontend will be available at:
+
+```bash
+http://localhost:5173
+```
+
+## Verify Frontend Build
+
+```bash
+npm run build
 ```
 
 ---
@@ -231,38 +288,61 @@ http://localhost:8000/docs
 
 ## 📸 Current Application Preview
 
-### Backend API
+### Frontend
 
-* Dataset generation endpoint implemented
-* K-Means clustering endpoint implemented
-* Iteration history tracking implemented
-* Inertia calculation implemented
-* Swagger documentation available
+* Dataset generation UI
+* K-Means execution UI
+* Scatter plot visualization
+* Cluster color visualization
+* Centroid visualization
+* Iteration slider
+* Previous / Next controls
+* Play / Pause animation
+* Reset animation
+* Clustering metrics dashboard
+
+### Backend
+
+* Root API endpoint
+* Health check endpoint
+* Dataset generation API
+* K-Means clustering API
+* Iteration tracking
+* Inertia calculation
+* Swagger documentation
 
 ---
 
 ## ✅ Code Quality
 
-### Format Code
+### Backend Code Formatting
 
 ```bash
 cd backend
 py -m black .
 ```
 
-### Run Linter
+### Run Backend Linter
 
 ```bash
 cd backend
 py -m ruff check .
 ```
 
-### Auto-Fix Linter Issues
+### Auto-Fix Backend Linter Issues
 
 ```bash
 cd backend
 py -m ruff check . --fix
 ```
+
+### Frontend Lint
+
+```bash
+cd frontend
+npm run lint
+```
+
 ---
 
 ## 🔧 Development Tools
@@ -271,7 +351,9 @@ py -m ruff check . --fix
 * `Ruff` - Python linter
 * `React` - Frontend UI
 * `Vite` - Frontend tooling
+* `Axios` - API communication
 * `FastAPI` - Backend API
+* `Swagger UI` - API documentation
 * `GitHub Actions` - CI/CD (planned)
 * `Docker` & `Kubernetes` - Deployment (planned)
 
@@ -286,8 +368,11 @@ This project demonstrates:
 * Numerical Computing with NumPy
 * FastAPI Backend Development
 * API Design and Validation
-* React Frontend Development (planned)
-* Data Visualization (planned)
+* React State Management
+* API Integration with Axios
+* Interactive Algorithm Visualization
+* Frontend-Backend Communication
+* Data Visualization
 * Docker Containerization (planned)
 * Kubernetes Deployment (planned)
 * CI/CD Automation (planned)
