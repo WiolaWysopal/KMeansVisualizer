@@ -27,19 +27,24 @@ The project is designed as an educational tool for learning machine learning fun
 * Iteration history tracking
 * Final centroid calculation
 
+### 🐳 Dockerized Development Environment
+
+* Backend Docker container
+* Frontend Docker container
+* Docker Compose orchestration
+* One-command local environment startup
+* Containerized FastAPI application
+* Containerized React application
+
 ### 🚧 Planned Features
 
 * Centroid movement visualization
 * Inertia charts
-* Docker deployment
 * Kubernetes deployment
 * GitHub Actions CI/CD
 * Cluster assignment visualization improvements
 * Responsive UI
 * Dark mode
-* Docker deployment
-* Kubernetes deployment
-* GitHub Actions CI/CD
 * Linear Regression Visualizer
 
 ---
@@ -62,8 +67,6 @@ The project is designed as an educational tool for learning machine learning fun
 
 ### Planned DevOps
 
-* Docker
-* Docker Compose
 * Kubernetes
 * GitHub Actions
 
@@ -84,7 +87,8 @@ KMeansVisualizer/
 │   │   ├── dataset_service.py
 │   │   └── kmeans_service.py
 │   │
-│   ├── venv/
+│   ├── Dockerfile
+│   ├── .dockerignore
 │   ├── main.py
 │   ├── requirements.txt
 │   └── pyproject.toml
@@ -94,10 +98,6 @@ KMeansVisualizer/
 │   │
 │   ├── src/
 │   │   ├── assets/
-│   │   │   ├── hero.png
-│   │   │   ├── react.svg
-│   │   │   └── vite.svg
-│   │   │
 │   │   ├── components/
 │   │   │   ├── ClusteringMetrics.jsx
 │   │   │   ├── DatasetGenerator.jsx
@@ -113,16 +113,18 @@ KMeansVisualizer/
 │   │   ├── index.css
 │   │   └── main.jsx
 │   │
+│   ├── Dockerfile
+│   ├── .dockerignore
 │   ├── package.json
 │   ├── package-lock.json
 │   ├── vite.config.js
 │   └── eslint.config.js
 │
 ├── k8s/
+├── docker-compose.yml
 ├── README.md
 └── .gitignore
 ```
-
 
 ---
 
@@ -202,6 +204,29 @@ npm run build
 ```
 
 ---
+
+## 🐳 Docker Setup
+
+### Build and Start All Services
+
+```bash
+docker compose up --build
+```
+
+Services will be available at:
+
+```text
+Frontend: http://localhost:5173
+Backend:  http://localhost:8000
+Swagger:  http://localhost:8000/docs
+```
+
+### Stop Services
+
+```bash
+docker compose down
+```
+--- 
 
 ## 🔗 Available Endpoints
 
@@ -341,6 +366,24 @@ py -m ruff check . --fix
 ```bash
 cd frontend
 npm run lint
+```
+
+### Validate Docker Compose
+
+```bash
+docker compose config
+```
+
+### Build Backend Docker Image
+
+```bash
+docker build -t kmeans-backend ./backend
+```
+
+### Build Frontend Docker Image
+
+```bash
+docker build -t kmeans-frontend ./frontend
 ```
 
 ---
