@@ -36,11 +36,21 @@ The project is designed as an educational tool for learning machine learning fun
 * Containerized FastAPI application
 * Containerized React application
 
+### ☸️ Kubernetes Deployment
+
+* Backend Deployment
+* Frontend Deployment
+* Backend Service
+* Frontend Service
+* Kubernetes Ingress
+* Internal service discovery
+* Container orchestration with Kubernetes
+* Local Kubernetes deployment support
+
 ### 🚧 Planned Features
 
-* Centroid movement visualization
+* Enhanced centroid movement visualization
 * Inertia charts
-* Kubernetes deployment
 * GitHub Actions CI/CD
 * Cluster assignment visualization improvements
 * Responsive UI
@@ -65,10 +75,13 @@ The project is designed as an educational tool for learning machine learning fun
 * Axios
 * SVG Visualization
 
-### Planned DevOps
+### DevOps
 
+* Docker
+* Docker Compose
 * Kubernetes
-* GitHub Actions
+* Ingress
+* GitHub Actions (planned)
 
 ---
 
@@ -121,6 +134,11 @@ KMeansVisualizer/
 │   └── eslint.config.js
 │
 ├── k8s/
+│   ├── backend-deployment.yaml
+│   ├── backend-service.yaml
+│   ├── frontend-deployment.yaml
+│   ├── frontend-service.yaml
+│   └── ingress.yaml
 ├── docker-compose.yml
 ├── README.md
 └── .gitignore
@@ -185,7 +203,7 @@ cd frontend
 npm install
 ```
 
-## Run Frontend
+### Run Frontend
 
 ```bash
 npm run dev
@@ -197,7 +215,7 @@ Frontend will be available at:
 http://localhost:5173
 ```
 
-## Verify Frontend Build
+### Verify Frontend Build
 
 ```bash
 npm run build
@@ -227,6 +245,60 @@ Swagger:  http://localhost:8000/docs
 docker compose down
 ```
 --- 
+
+## ☸️ Kubernetes Setup
+
+### Build Local Docker Images
+
+```bash
+docker build -t kmeans-backend:latest ./backend
+docker build -t kmeans-frontend:latest ./frontend
+```
+
+### Deploy to Kubernetes
+
+```bash
+kubectl apply -f k8s/
+```
+
+### Verify Resources
+
+```bash
+kubectl get pods
+kubectl get services
+kubectl get ingress
+```
+
+### Access Backend
+
+```bash
+kubectl port-forward service/kmeans-backend-service 8000:8000
+```
+
+Backend will be available at:
+
+```text
+http://localhost:8000
+```
+
+### Access Frontend
+
+```bash
+kubectl port-forward service/kmeans-frontend-service 5173:5173
+```
+
+Frontend will be available at:
+
+```text
+http://localhost:5173
+```
+
+### Remove Kubernetes Resources
+
+```bash
+kubectl delete -f k8s/
+```
+---
 
 ## 🔗 Available Endpoints
 
@@ -336,6 +408,15 @@ http://localhost:8000/docs
 * Inertia calculation
 * Swagger documentation
 
+### Infrastructure
+
+* Dockerized backend
+* Dockerized frontend
+* Docker Compose environment
+* Kubernetes deployments
+* Kubernetes services
+* Kubernetes ingress
+
 ---
 
 ## ✅ Code Quality
@@ -386,6 +467,18 @@ docker build -t kmeans-backend ./backend
 docker build -t kmeans-frontend ./frontend
 ```
 
+### Validate Kubernetes Resources
+
+```bash
+kubectl apply --dry-run=client -f k8s/
+```
+### View Kubernetes Resources
+
+```bash
+kubectl get pods
+kubectl get services
+kubectl get ingress
+```
 ---
 
 ## 🔧 Development Tools
@@ -397,8 +490,11 @@ docker build -t kmeans-frontend ./frontend
 * `Axios` - API communication
 * `FastAPI` - Backend API
 * `Swagger UI` - API documentation
+* `Docker` - Containerization
+* `Docker Compose` - Local orchestration
+* `Kubernetes` - Container orchestration
+* `Ingress` - Traffic routing
 * `GitHub Actions` - CI/CD (planned)
-* `Docker` & `Kubernetes` - Deployment (planned)
 
 ---
 
@@ -416,6 +512,9 @@ This project demonstrates:
 * Interactive Algorithm Visualization
 * Frontend-Backend Communication
 * Data Visualization
-* Docker Containerization (planned)
-* Kubernetes Deployment (planned)
+* Docker Containerization
+* Docker Compose Orchestration
+* Kubernetes Deployments
+* Kubernetes Services
+* Kubernetes Ingress
 * CI/CD Automation (planned)

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kmeans-frontend
+  labels:
+    app: kmeans-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kmeans-frontend
+  template:
+    metadata:
+      labels:
+        app: kmeans-frontend
+    spec:
+      containers:
+        - name: kmeans-frontend
+          image: kmeans-frontend:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 5173
