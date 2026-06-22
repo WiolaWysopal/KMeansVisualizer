@@ -74,4 +74,4 @@ jobs:
         run: docker build -t kmeans-frontend ./frontend
 
       - name: Validate Kubernetes manifests
-        run: run: kubectl apply --dry-run=client --validate=false -f k8s/
+        run: kubectl apply --dry-run=client --validate=false -f k8s/
