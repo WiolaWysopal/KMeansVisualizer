@@ -73,5 +73,8 @@ jobs:
       - name: Build frontend Docker image
         run: docker build -t kmeans-frontend ./frontend
 
+      - name: Create Kubernetes cluster
+        uses: helm/kind-action@v1
+
       - name: Validate Kubernetes manifests
-        run: kubectl apply --dry-run=client --validate=false -f k8s/
+        run: kubectl apply --dry-run=server -f k8s/
