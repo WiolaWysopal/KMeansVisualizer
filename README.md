@@ -70,11 +70,19 @@ The project is designed as an educational tool for learning machine learning fun
 
 * Enhanced centroid movement visualization
 * Inertia charts
-* GitHub Actions CI/CD
 * Cluster assignment visualization improvements
 * Responsive UI
 * Dark mode
 * Linear Regression Visualizer
+
+### 🔄 Continuous Integration
+
+* Automated backend quality checks
+* Automated frontend linting
+* Automated frontend production build verification
+* Automated Docker image builds
+* Automated Kubernetes manifest validation
+* GitHub Actions CI workflow
 
 ---
 
@@ -100,7 +108,7 @@ The project is designed as an educational tool for learning machine learning fun
 * Docker Compose
 * Kubernetes
 * Ingress
-* GitHub Actions (planned)
+* GitHub Actions
 
 ---
 
@@ -108,6 +116,9 @@ The project is designed as an educational tool for learning machine learning fun
 
 ```text
 KMeansVisualizer/
+.github/
+├── workflows/
+│    └── ci.yml
 ├── backend/
 │   ├── schemas/
 │   │   ├── __init__.py
@@ -515,6 +526,27 @@ http://localhost:8000/docs
 
 ---
 
+## 🔄 GitHub Actions CI
+
+The project includes an automated CI workflow executed on every push and pull request.
+
+### Automated Checks
+
+* Backend Ruff linting
+* Backend Black formatting verification
+* Frontend ESLint verification
+* Frontend production build verification
+* Backend Docker image build
+* Frontend Docker image build
+* Kubernetes manifest validation
+
+### Workflow File
+
+```text
+.github/workflows/ci.yml
+```
+---
+
 ## ✅ Code Quality
 
 ### Backend Code Formatting
@@ -618,7 +650,7 @@ kubectl describe pod <pod-name>
 * `Liveness Probe` - Container health checks
 * `Readiness Probe` - Traffic readiness checks
 * `PowerShell Scripts` - Kubernetes automation
-* `GitHub Actions` - CI/CD (planned)
+* `GitHub Actions` - Continuous Integration
 
 ---
 
@@ -649,4 +681,4 @@ This project demonstrates:
 * Infrastructure Automation
 * Kubernetes Operational Workflows
 * Deployment Automation
-* CI/CD Automation (planned)
+* CI/CD Automation
