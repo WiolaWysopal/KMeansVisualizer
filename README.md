@@ -47,6 +47,16 @@ The project is designed as an educational tool for learning machine learning fun
 * Container orchestration with Kubernetes
 * Local Kubernetes deployment support
 
+### 📈 Kubernetes Scaling & Monitoring
+
+* Backend Horizontal Pod Autoscaler (HPA)
+* CPU-based autoscaling configuration
+* Kubernetes ConfigMap configuration management
+* Resource requests and limits
+* Liveness probes
+* Readiness probes
+* Health monitoring through Kubernetes
+
 ### 🚧 Planned Features
 
 * Enhanced centroid movement visualization
@@ -138,7 +148,10 @@ KMeansVisualizer/
 │   ├── backend-service.yaml
 │   ├── frontend-deployment.yaml
 │   ├── frontend-service.yaml
+│   ├── backend-hpa.yaml
+│   ├── configmap.yaml
 │   └── ingress.yaml
+│
 ├── docker-compose.yml
 ├── README.md
 └── .gitignore
@@ -267,6 +280,25 @@ kubectl apply -f k8s/
 kubectl get pods
 kubectl get services
 kubectl get ingress
+```
+
+### Verify Horizontal Pod Autoscaler
+
+```bash
+kubectl get hpa
+kubectl describe hpa kmeans-backend-hpa
+```
+
+### Verify ConfigMap
+
+```bash
+kubectl get configmaps
+kubectl describe configmap kmeans-config
+```
+
+### Inspect Pod Health
+```bash
+kubectl describe pod <pod-name>
 ```
 
 ### Access Backend
@@ -416,6 +448,10 @@ http://localhost:8000/docs
 * Kubernetes deployments
 * Kubernetes services
 * Kubernetes ingress
+* Horizontal Pod Autoscaler (HPA)
+* ConfigMap-based configuration
+* Health monitoring probes
+* Resource limits and requests
 
 ---
 
@@ -472,6 +508,7 @@ docker build -t kmeans-frontend ./frontend
 ```bash
 kubectl apply --dry-run=client -f k8s/
 ```
+
 ### View Kubernetes Resources
 
 ```bash
@@ -479,6 +516,28 @@ kubectl get pods
 kubectl get services
 kubectl get ingress
 ```
+
+### View Horizontal Pod Autoscaler
+
+```bash
+kubectl get hpa
+```
+
+### Describe HPA
+```bash
+kubectl describe hpa kmeans-backend-hpa
+```
+
+### View ConfigMaps
+```bash
+kubectl get configmaps
+```
+
+### Inspect Pod Health
+```bash
+kubectl describe pod <pod-name>
+```
+
 ---
 
 ## 🔧 Development Tools
@@ -494,6 +553,10 @@ kubectl get ingress
 * `Docker Compose` - Local orchestration
 * `Kubernetes` - Container orchestration
 * `Ingress` - Traffic routing
+* `Horizontal Pod Autoscaler` (`HPA`) - Automatic scaling
+* `ConfigMap` - Configuration management
+* `Liveness Probe` - Container health checks
+* `Readiness Probe` - Traffic readiness checks
 * `GitHub Actions` - CI/CD (planned)
 
 ---
@@ -517,4 +580,9 @@ This project demonstrates:
 * Kubernetes Deployments
 * Kubernetes Services
 * Kubernetes Ingress
+* Kubernetes Horizontal Pod Autoscaling
+* Kubernetes ConfigMaps
+* Kubernetes Health Checks
+* Resource Management in Kubernetes
+* Application Monitoring Concepts
 * CI/CD Automation (planned)
