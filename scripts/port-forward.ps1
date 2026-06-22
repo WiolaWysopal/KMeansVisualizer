@@ -1,0 +1,2 @@
+Start-Process powershell -ArgumentList "kubectl port-forward service/kmeans-backend-service 8000:8000"
+Start-Process powershell -ArgumentList "kubectl port-forward service/kmeans-frontend-service 5173:5173"

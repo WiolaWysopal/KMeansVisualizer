@@ -47,6 +47,25 @@ The project is designed as an educational tool for learning machine learning fun
 * Container orchestration with Kubernetes
 * Local Kubernetes deployment support
 
+### 📈 Kubernetes Scaling & Monitoring
+
+* Backend Horizontal Pod Autoscaler (HPA)
+* CPU-based autoscaling configuration
+* Kubernetes ConfigMap configuration management
+* Resource requests and limits
+* Liveness probes
+* Readiness probes
+* Health monitoring through Kubernetes
+
+### ⚡ Kubernetes Automation
+
+* One-command Kubernetes deployment
+* Automatic Docker image builds
+* Automatic Kubernetes resource deployment
+* Automated deployment rollout verification
+* Automated cluster cleanup
+* Automated port-forwarding setup
+
 ### 🚧 Planned Features
 
 * Enhanced centroid movement visualization
@@ -138,7 +157,15 @@ KMeansVisualizer/
 │   ├── backend-service.yaml
 │   ├── frontend-deployment.yaml
 │   ├── frontend-service.yaml
+│   ├── backend-hpa.yaml
+│   ├── configmap.yaml
 │   └── ingress.yaml
+│
+├── scripts/
+│   ├── deploy-k8s.ps1
+│   ├── destroy-k8s.ps1
+│   └── port-forward.ps1
+│
 ├── docker-compose.yml
 ├── README.md
 └── .gitignore
@@ -269,6 +296,25 @@ kubectl get services
 kubectl get ingress
 ```
 
+### Verify Horizontal Pod Autoscaler
+
+```bash
+kubectl get hpa
+kubectl describe hpa kmeans-backend-hpa
+```
+
+### Verify ConfigMap
+
+```bash
+kubectl get configmaps
+kubectl describe configmap kmeans-config
+```
+
+### Inspect Pod Health
+```bash
+kubectl describe pod <pod-name>
+```
+
 ### Access Backend
 
 ```bash
@@ -298,6 +344,49 @@ http://localhost:5173
 ```bash
 kubectl delete -f k8s/
 ```
+
+---
+
+## ⚡ Kubernetes Automation Scripts
+
+### Deploy Entire Environment
+
+```powershell
+.\scripts\deploy-k8s.ps1
+```
+
+This script:
+
+* Removes previous Kubernetes resources
+* Builds backend Docker image
+* Builds frontend Docker image
+* Deploys all Kubernetes manifests
+* Waits for deployment rollout
+* Displays cluster status
+
+### Remove Entire Environment
+
+```powershell
+.\scripts\destroy-k8s.ps1
+```
+
+This script:
+
+* Removes all Kubernetes resources
+* Displays remaining cluster resources
+
+### Start Port Forwarding
+
+```powershell
+.\scripts\port-forward.ps1
+```
+
+This script:
+
+* Opens backend port forwarding
+* Opens frontend port forwarding
+* Provides local access to the application
+
 ---
 
 ## 🔗 Available Endpoints
@@ -416,6 +505,13 @@ http://localhost:8000/docs
 * Kubernetes deployments
 * Kubernetes services
 * Kubernetes ingress
+* Horizontal Pod Autoscaler (HPA)
+* ConfigMap-based configuration
+* Health monitoring probes
+* Resource limits and requests
+* Automated Kubernetes deployment scripts
+* Automated Kubernetes cleanup scripts
+* Automated port-forwarding scripts
 
 ---
 
@@ -472,6 +568,7 @@ docker build -t kmeans-frontend ./frontend
 ```bash
 kubectl apply --dry-run=client -f k8s/
 ```
+
 ### View Kubernetes Resources
 
 ```bash
@@ -479,6 +576,28 @@ kubectl get pods
 kubectl get services
 kubectl get ingress
 ```
+
+### View Horizontal Pod Autoscaler
+
+```bash
+kubectl get hpa
+```
+
+### Describe HPA
+```bash
+kubectl describe hpa kmeans-backend-hpa
+```
+
+### View ConfigMaps
+```bash
+kubectl get configmaps
+```
+
+### Inspect Pod Health
+```bash
+kubectl describe pod <pod-name>
+```
+
 ---
 
 ## 🔧 Development Tools
@@ -494,6 +613,11 @@ kubectl get ingress
 * `Docker Compose` - Local orchestration
 * `Kubernetes` - Container orchestration
 * `Ingress` - Traffic routing
+* `Horizontal Pod Autoscaler` (`HPA`) - Automatic scaling
+* `ConfigMap` - Configuration management
+* `Liveness Probe` - Container health checks
+* `Readiness Probe` - Traffic readiness checks
+* `PowerShell Scripts` - Kubernetes automation
 * `GitHub Actions` - CI/CD (planned)
 
 ---
@@ -517,4 +641,12 @@ This project demonstrates:
 * Kubernetes Deployments
 * Kubernetes Services
 * Kubernetes Ingress
+* Kubernetes Horizontal Pod Autoscaling
+* Kubernetes ConfigMaps
+* Kubernetes Health Checks
+* Resource Management in Kubernetes
+* Application Monitoring Concepts
+* Infrastructure Automation
+* Kubernetes Operational Workflows
+* Deployment Automation
 * CI/CD Automation (planned)

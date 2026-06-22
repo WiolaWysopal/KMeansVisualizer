@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kmeans-config
+data:
+  API_ENV: "development"
+  BACKEND_PORT: "8000"
+  FRONTEND_PORT: "5173"
