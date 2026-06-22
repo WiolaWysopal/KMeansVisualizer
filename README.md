@@ -57,6 +57,15 @@ The project is designed as an educational tool for learning machine learning fun
 * Readiness probes
 * Health monitoring through Kubernetes
 
+### ⚡ Kubernetes Automation
+
+* One-command Kubernetes deployment
+* Automatic Docker image builds
+* Automatic Kubernetes resource deployment
+* Automated deployment rollout verification
+* Automated cluster cleanup
+* Automated port-forwarding setup
+
 ### 🚧 Planned Features
 
 * Enhanced centroid movement visualization
@@ -151,6 +160,11 @@ KMeansVisualizer/
 │   ├── backend-hpa.yaml
 │   ├── configmap.yaml
 │   └── ingress.yaml
+│
+├── scripts/
+│   ├── deploy-k8s.ps1
+│   ├── destroy-k8s.ps1
+│   └── port-forward.ps1
 │
 ├── docker-compose.yml
 ├── README.md
@@ -330,6 +344,49 @@ http://localhost:5173
 ```bash
 kubectl delete -f k8s/
 ```
+
+---
+
+## ⚡ Kubernetes Automation Scripts
+
+### Deploy Entire Environment
+
+```powershell
+.\scripts\deploy-k8s.ps1
+```
+
+This script:
+
+* Removes previous Kubernetes resources
+* Builds backend Docker image
+* Builds frontend Docker image
+* Deploys all Kubernetes manifests
+* Waits for deployment rollout
+* Displays cluster status
+
+### Remove Entire Environment
+
+```powershell
+.\scripts\destroy-k8s.ps1
+```
+
+This script:
+
+* Removes all Kubernetes resources
+* Displays remaining cluster resources
+
+### Start Port Forwarding
+
+```powershell
+.\scripts\port-forward.ps1
+```
+
+This script:
+
+* Opens backend port forwarding
+* Opens frontend port forwarding
+* Provides local access to the application
+
 ---
 
 ## 🔗 Available Endpoints
@@ -452,6 +509,9 @@ http://localhost:8000/docs
 * ConfigMap-based configuration
 * Health monitoring probes
 * Resource limits and requests
+* Automated Kubernetes deployment scripts
+* Automated Kubernetes cleanup scripts
+* Automated port-forwarding scripts
 
 ---
 
@@ -557,6 +617,7 @@ kubectl describe pod <pod-name>
 * `ConfigMap` - Configuration management
 * `Liveness Probe` - Container health checks
 * `Readiness Probe` - Traffic readiness checks
+* `PowerShell Scripts` - Kubernetes automation
 * `GitHub Actions` - CI/CD (planned)
 
 ---
@@ -585,4 +646,7 @@ This project demonstrates:
 * Kubernetes Health Checks
 * Resource Management in Kubernetes
 * Application Monitoring Concepts
+* Infrastructure Automation
+* Kubernetes Operational Workflows
+* Deployment Automation
 * CI/CD Automation (planned)
