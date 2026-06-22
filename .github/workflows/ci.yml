@@ -58,3 +58,20 @@ jobs:
 
       - name: Build frontend
         run: npm run build
+        
+  infrastructure:
+    name: Docker and Kubernetes Validation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build backend Docker image
+        run: docker build -t kmeans-backend ./backend
+
+      - name: Build frontend Docker image
+        run: docker build -t kmeans-frontend ./frontend
+
+      - name: Validate Kubernetes manifests
+        run: kubectl apply --dry-run=client -f k8s/
