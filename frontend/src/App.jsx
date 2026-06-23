@@ -5,6 +5,7 @@ import DatasetGenerator from "./components/DatasetGenerator";
 import IterationControls from "./components/IterationControls";
 import KMeansControls from "./components/KMeansControls";
 import ScatterPlot from "./components/ScatterPlot";
+import InertiaChart from "./components/InertiaChart";
 
 export default function App() {
   const [dataset, setDataset] = useState([]);
@@ -77,6 +78,8 @@ export default function App() {
             onNext={handleNextIteration}
             onReset={handleResetIteration}
           />
+
+          <InertiaChart iterations={iterations} />
         </div>
       </section>
     </main>

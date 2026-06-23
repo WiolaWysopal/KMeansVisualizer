@@ -193,6 +193,16 @@ button:disabled {
   transition: width 0.3s ease;
 }
 
+.inertia-chart-card p {
+  margin-bottom: 16px;
+  color: #64748b;
+}
+
+.chart-container {
+  width: 100%;
+  height: 220px;
+}
+
 @media (max-width: 900px) {
   .app {
     padding: 32px 16px;
