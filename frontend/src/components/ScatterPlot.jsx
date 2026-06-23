@@ -17,47 +17,50 @@ export default function ScatterPlot({
   assignments = [],
 }) {
   if (!points.length) {
-    return <p>No dataset generated yet.</p>;
+    return (
+      <section className="card plot-card">
+        <p className="empty-state">
+          No dataset generated yet. Start by generating random points.
+        </p>
+      </section>
+    );
   }
 
   const getPointColor = (index) => {
     const clusterIndex = assignments[index];
 
     if (clusterIndex === undefined) {
-      return "steelblue";
+      return "#64748b";
     }
 
     return CLUSTER_COLORS[clusterIndex % CLUSTER_COLORS.length];
   };
 
   return (
-    <svg
-      width="500"
-      height="500"
-      viewBox="0 0 100 100"
-      style={{ border: "1px solid #ccc", background: "#fafafa" }}
-    >
-      {points.map((point, index) => (
-        <circle
-          key={`point-${index}`}
-          cx={point.x}
-          cy={100 - point.y}
-          r="1.5"
-          fill={getPointColor(index)}
-        />
-      ))}
+    <section className="card plot-card">
+      <svg className="scatter-plot" viewBox="0 0 100 100">
+        {points.map((point, index) => (
+          <circle
+            key={`point-${index}`}
+            cx={point.x}
+            cy={100 - point.y}
+            r="1.5"
+            fill={getPointColor(index)}
+          />
+        ))}
 
-      {centroids.map(([x, y], index) => (
-        <circle
-          key={`centroid-${index}`}
-          cx={x}
-          cy={100 - y}
-          r="3"
-          fill={CLUSTER_COLORS[index % CLUSTER_COLORS.length]}
-          stroke="black"
-          strokeWidth="0.7"
-        />
-      ))}
-    </svg>
+        {centroids.map(([x, y], index) => (
+          <circle
+            key={`centroid-${index}`}
+            cx={x}
+            cy={100 - y}
+            r="3"
+            fill={CLUSTER_COLORS[index % CLUSTER_COLORS.length]}
+            stroke="#0f172a"
+            strokeWidth="0.7"
+          />
+        ))}
+      </svg>
+    </section>
   );
 }
