@@ -50,13 +50,13 @@ export default function IterationControls({
       </p>
 
       <div className="progress-bar">
-  <div
-    className="progress-fill"
-    style={{
-      width: `${((currentIterationIndex + 1) / totalIterations) * 100}%`,
-    }}
-  />
-</div>
+        <div
+          className="progress-fill"
+          style={{
+            width: `${((currentIterationIndex + 1) / totalIterations) * 100}%`,
+          }}
+        />
+      </div>
 
       <div className="button-row">
         <button

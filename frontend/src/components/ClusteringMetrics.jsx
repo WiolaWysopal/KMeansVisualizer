@@ -39,7 +39,9 @@ export default function ClusteringMetrics({
 
         <div className="metric">
           <span>Final inertia</span>
-          <span>{finalIteration ? finalIteration.inertia.toFixed(2) : "N/A"}</span>
+          <span>
+            {finalIteration ? finalIteration.inertia.toFixed(2) : "N/A"}
+          </span>
         </div>
       </div>
     </section>
