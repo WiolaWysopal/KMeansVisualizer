@@ -36,6 +36,8 @@ export default function ScatterPlot({
     return CLUSTER_COLORS[clusterIndex % CLUSTER_COLORS.length];
   };
 
+  const visibleClusters = centroids.length;
+
   return (
     <section className="card plot-card">
       <svg className="scatter-plot" viewBox="0 0 100 100">
@@ -61,6 +63,20 @@ export default function ScatterPlot({
           />
         ))}
       </svg>
+
+      <div className="cluster-legend">
+        {Array.from({ length: visibleClusters }).map((_, index) => (
+          <div key={index} className="legend-item">
+            <span
+              className="legend-color"
+              style={{
+                backgroundColor: CLUSTER_COLORS[index % CLUSTER_COLORS.length],
+              }}
+            />
+            Cluster {index + 1}
+          </div>
+        ))}
+      </div>
     </section>
   );
 }
