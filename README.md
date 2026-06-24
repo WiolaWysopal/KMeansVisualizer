@@ -6,9 +6,13 @@ The project is designed as an educational tool for learning machine learning fun
 
 ---
 
-## 🎬 Demo
+## 🎬 Application Demo
 
 ![KMeans Visualizer Demo](docs/gifs/kmeans-demo.gif)
+
+## ☸️ Kubernetes Deployment Demo
+
+![Kubernetes Demo](docs/gifs/kubernetes-demo.gif)
 
 ---
 
