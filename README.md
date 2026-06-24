@@ -6,6 +6,12 @@ The project is designed as an educational tool for learning machine learning fun
 
 ---
 
+## 🎬 Demo
+
+![KMeans Visualizer Demo](docs/gifs/kmeans-demo.gif)
+
+---
+
 ## ✨ Current Features
 
 ### 📊 Dataset Generator
