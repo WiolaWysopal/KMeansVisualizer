@@ -6,7 +6,6 @@ export default function IterationControls({
   onPrevious,
   onNext,
   onReset,
-  onSelectIteration,
 }) {
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -43,23 +42,28 @@ export default function IterationControls({
   };
 
   return (
-    <section>
+    <section className="card">
       <h2>Iteration Controls</h2>
 
       <p>
-        Iteration: {currentIterationIndex + 1} / {totalIterations}
+        Iteration {currentIterationIndex + 1} of {totalIterations}
       </p>
 
-      <input
-        type="range"
-        min="0"
-        max={totalIterations - 1}
-        value={currentIterationIndex}
-        onChange={(event) => onSelectIteration(Number(event.target.value))}
-      />
+      <div className="progress-bar">
+        <div
+          className="progress-fill"
+          style={{
+            width: `${((currentIterationIndex + 1) / totalIterations) * 100}%`,
+          }}
+        />
+      </div>
 
-      <div>
-        <button onClick={onPrevious} disabled={isFirstIteration}>
+      <div className="button-row">
+        <button
+          className="secondary-button"
+          onClick={onPrevious}
+          disabled={isFirstIteration}
+        >
           Previous
         </button>
 
@@ -67,11 +71,17 @@ export default function IterationControls({
           {isPlaying ? "Pause" : "Play"}
         </button>
 
-        <button onClick={onNext} disabled={isLastIteration}>
+        <button
+          className="secondary-button"
+          onClick={onNext}
+          disabled={isLastIteration}
+        >
           Next
         </button>
 
-        <button onClick={onReset}>Reset</button>
+        <button className="secondary-button" onClick={onReset}>
+          Reset
+        </button>
       </div>
     </section>
   );

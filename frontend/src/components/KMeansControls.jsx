@@ -26,24 +26,27 @@ export default function KMeansControls({ points, onCluster }) {
   };
 
   return (
-    <section>
+    <section className="card">
       <h2>K-Means Clustering</h2>
+      <p>Select the number of clusters and run the algorithm.</p>
 
-      <label htmlFor="clusters">Number of clusters:</label>
-      <input
-        id="clusters"
-        type="number"
-        min="1"
-        max="10"
-        value={k}
-        onChange={(event) => setK(Number(event.target.value))}
-      />
+      <div className="form-group">
+        <label htmlFor="clusters">Number of clusters</label>
+        <input
+          id="clusters"
+          type="number"
+          min="1"
+          max="10"
+          value={k}
+          onChange={(event) => setK(Number(event.target.value))}
+        />
+      </div>
 
       <button onClick={handleRunKMeans} disabled={!points.length}>
         Run K-Means
       </button>
 
-      {error && <p>{error}</p>}
+      {error && <p className="error-message">{error}</p>}
     </section>
   );
 }

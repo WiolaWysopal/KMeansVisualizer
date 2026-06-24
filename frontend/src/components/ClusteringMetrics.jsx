@@ -11,20 +11,39 @@ export default function ClusteringMetrics({
   const finalIteration = iterations[iterations.length - 1];
 
   return (
-    <section>
+    <section className="card">
       <h2>Clustering Metrics</h2>
 
-      <p>Dataset size: {datasetSize} points</p>
-      <p>Clusters: {clusteringResult.k}</p>
-      <p>Total iterations: {iterations.length}</p>
-      <p>
-        Current inertia:{" "}
-        {currentIteration ? currentIteration.inertia.toFixed(2) : "N/A"}
-      </p>
-      <p>
-        Final inertia:{" "}
-        {finalIteration ? finalIteration.inertia.toFixed(2) : "N/A"}
-      </p>
+      <div className="metrics-grid">
+        <div className="metric">
+          <span>Dataset size</span>
+          <span>{datasetSize} points</span>
+        </div>
+
+        <div className="metric">
+          <span>Clusters</span>
+          <span>{clusteringResult.k}</span>
+        </div>
+
+        <div className="metric">
+          <span>Total iterations</span>
+          <span>{iterations.length}</span>
+        </div>
+
+        <div className="metric">
+          <span>Current inertia</span>
+          <span>
+            {currentIteration ? currentIteration.inertia.toFixed(2) : "N/A"}
+          </span>
+        </div>
+
+        <div className="metric">
+          <span>Final inertia</span>
+          <span>
+            {finalIteration ? finalIteration.inertia.toFixed(2) : "N/A"}
+          </span>
+        </div>
+      </div>
     </section>
   );
 }

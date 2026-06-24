@@ -1,9 +1,11 @@
 import { useState } from "react";
+import "./App.css";
 import ClusteringMetrics from "./components/ClusteringMetrics";
 import DatasetGenerator from "./components/DatasetGenerator";
 import IterationControls from "./components/IterationControls";
 import KMeansControls from "./components/KMeansControls";
 import ScatterPlot from "./components/ScatterPlot";
+import InertiaChart from "./components/InertiaChart";
 
 export default function App() {
   const [dataset, setDataset] = useState([]);
@@ -41,28 +43,45 @@ export default function App() {
   };
 
   return (
-    <main>
-      <h1>K-Means Visualizer</h1>
+    <main className="app">
+      <header className="app-header">
+        <p className="eyebrow">ML Algorithm Visualizer</p>
+        <h1>K-Means Visualizer</h1>
+        <p className="subtitle">
+          Generate a 2D dataset, run K-Means clustering, and explore each
+          iteration step by step.
+        </p>
+      </header>
 
-      <DatasetGenerator onGenerate={handleGenerateDataset} />
-      <KMeansControls points={dataset} onCluster={handleCluster} />
+      <section className="dashboard">
+        <div className="sidebar">
+          <DatasetGenerator onGenerate={handleGenerateDataset} />
+          <KMeansControls points={dataset} onCluster={handleCluster} />
+          <ClusteringMetrics
+            datasetSize={dataset.length}
+            clusteringResult={clusteringResult}
+            currentIteration={currentIteration}
+          />
+        </div>
 
-      <ScatterPlot points={dataset} centroids={currentCentroids} />
+        <div className="visualization-panel">
+          <ScatterPlot
+            points={dataset}
+            centroids={currentCentroids}
+            assignments={currentIteration?.assignments ?? []}
+          />
 
-      <IterationControls
-        currentIterationIndex={currentIterationIndex}
-        totalIterations={iterations.length}
-        onPrevious={handlePreviousIteration}
-        onNext={handleNextIteration}
-        onReset={handleResetIteration}
-        onSelectIteration={setCurrentIterationIndex}
-      />
+          <IterationControls
+            currentIterationIndex={currentIterationIndex}
+            totalIterations={iterations.length}
+            onPrevious={handlePreviousIteration}
+            onNext={handleNextIteration}
+            onReset={handleResetIteration}
+          />
 
-      <ClusteringMetrics
-        datasetSize={dataset.length}
-        clusteringResult={clusteringResult}
-        currentIteration={currentIteration}
-      />
+          <InertiaChart iterations={iterations} />
+        </div>
+      </section>
     </main>
   );
 }

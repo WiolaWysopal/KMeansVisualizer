@@ -29,24 +29,27 @@ export default function DatasetGenerator({ onGenerate }) {
   };
 
   return (
-    <section>
+    <section className="card">
       <h2>Dataset Generator</h2>
+      <p>Generate random 2D points for clustering.</p>
 
-      <label htmlFor="pointCount">Number of points:</label>
-      <input
-        id="pointCount"
-        type="number"
-        min="5"
-        max="300"
-        value={pointCount}
-        onChange={(event) => setPointCount(Number(event.target.value))}
-      />
+      <div className="form-group">
+        <label htmlFor="pointCount">Number of points</label>
+        <input
+          id="pointCount"
+          type="number"
+          min="5"
+          max="300"
+          value={pointCount}
+          onChange={(event) => setPointCount(Number(event.target.value))}
+        />
+      </div>
 
       <button onClick={handleGenerate} disabled={isLoading}>
         {isLoading ? "Generating..." : "Generate Dataset"}
       </button>
 
-      {error && <p>{error}</p>}
+      {error && <p className="error-message">{error}</p>}
     </section>
   );
 }
